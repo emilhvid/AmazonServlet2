@@ -13,10 +13,6 @@
         <servlet-name>Servlet</servlet-name>
         <servlet-class>servlet.Servlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>getAdresses</servlet-name>
-        <servlet-class>servlet.getAdresses</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -24,10 +20,6 @@
     <servlet-mapping>
         <servlet-name>Servlet</servlet-name>
         <url-pattern>/Servlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>getAdresses</servlet-name>
-        <url-pattern>/getAdresses1</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

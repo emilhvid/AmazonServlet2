@@ -8,11 +8,7 @@ package servlet;
 import Client.ButikSøgning;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -61,37 +57,27 @@ public class Servlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    private ButikSøgning bs;
-
-    @Override
-    public void init(ServletConfig c) throws ServletException {
-        URL url;
-        try {
-            url = new URL("http://52.37.83.173:9901/amazonConnection?wsdl");
-            QName qname = new QName("http://amazonconnection/", "ButikSøgningImplService");
-            Service service = Service.create(url, qname);
-            bs = service.getPort(ButikSøgning.class);    } 
-        catch (MalformedURLException ex) {
-            Logger.getLogger(Servlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    }    
-            
     @Override
     public void doGet(HttpServletRequest request, 
 	                  HttpServletResponse response) throws IOException
 	{
-        response.setContentType("text/html");
-	PrintWriter out = response.getWriter();
-	out.println("<html>");
-	out.println("<head><title>Soap interface - fra en servlet</title></head>");
-	out.println("<body>");
-	out.println("<p>Der er adgang til Soap metoderne:<br>");
-	out.println(bs.sayHello()); 
-	out.println("</body>");
-	out.println("</html>");
+                URL url = new URL("http://52.37.83.173:9901/amazonConnection?wsdl");
+        QName qname = new QName("http://amazonconnection/", "ButikSøgningImplService");
+
+        Service service = Service.create(url, qname);
+            ButikSøgning bs = service.getPort(ButikSøgning.class);
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<html>");
+		out.println("<head><title>Syvtabellen - fra en servlet</title></head>");
+		out.println("<body>");
+		out.println("<p>Her er syv-tabellen:<br>");
+ 
+		out.println(bs.sayHello());
+		out.println("</body>");
+		out.println("</html>");
 	}
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -117,5 +103,4 @@ public class Servlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    
 }
