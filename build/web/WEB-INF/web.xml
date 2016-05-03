@@ -17,6 +17,14 @@
         <servlet-name>GetAdresses</servlet-name>
         <servlet-class>servlet.GetAdresses</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetRoute</servlet-name>
+        <servlet-class>servlet.GetRoute</servlet-class>
+        <init-param>
+            <param-name> orginLocation</param-name>
+            <param-value> servlet.GetRoute</param-value>
+        </init-param>   
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
@@ -28,6 +36,10 @@
     <servlet-mapping>
         <servlet-name>GetAdresses</servlet-name>
         <url-pattern>/GetAdresses</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetRoute</servlet-name>
+        <url-pattern>/GetRoute</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
