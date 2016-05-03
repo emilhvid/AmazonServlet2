@@ -58,7 +58,7 @@ public class GetRoute extends HttpServlet {
       
       @Override
       public void init(ServletConfig c) throws ServletException {
-        System.out.println("XXXXX doGet getroutxxxxxe");
+       // System.out.println("GetRoute XXXXX doGet getroutxxxxxe");
         URL url;
         try {
             url = new URL("http://52.37.83.173:9901/amazonConnection?wsdl");
@@ -68,22 +68,32 @@ public class GetRoute extends HttpServlet {
         catch (MalformedURLException ex) {
             
         }
+        
+        
     }    
     
       
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("doGet: " + "originLocation" + "time" + "destLocation" + "date");
-        //System.out.println("XXXXX doGet getroute");
+       
+          //System.out.println("doGet FOERST: " + "originLocation"+"time"+"destLocation"+ "date");
+       
          response.setContentType("text/html");
          
         PrintWriter out = response.getWriter();
-      if(request.getParameter("orginLocation" + "destLocation"+"time" +
-           "date")!=null& request.getParameter("city")!=null){
-          
-      String title = "trip "+request.getParameter("orginLocation"+ "destLocation"+"time" +
-           "date")+ " in "+request.getParameter("city");
+        System.out.println("Origin  "+request.getParameter("originLocation"));
+        System.out.println( "dest " +request.getParameter("destLocation"));      
+        System.out.println("Time" +  request.getParameter("time"));
+        System.out.println("Date" +  request.getParameter("date"));
+           
+               
+        
+      if(request.getParameter("destLocation")!=null && 
+              request.getParameter("time")!=null && request.getParameter("date")!=null) {
+              
+      String title = "trip "+request.getParameter("orginLocation") +"in"+ ("destLocation")+"in"
+          +("time")+ " in "+request.getParameter("date");
       String docType =
       "<!doctype html public \"-//w3c//dtd html 4.0 " +
       "transitional//en\">\n";
@@ -101,11 +111,14 @@ public class GetRoute extends HttpServlet {
           
           List<String> add = bs.getRoute(request.getParameter("originLocation"), request.getParameter("destLocation"),
                   request.getParameter("time"), request.getParameter("date"),true);
-           System.out.println("doGet: " + "originLocation"+"time"+"destLocation"+ "date");
+           System.out.println("doGet SIDST: " + "originLocation"+"time"+"destLocation"+ "date");
           for (String string : add) {
+              System.out.println(string+"<br>");
               out.print(string+"<br>");
           }
-      } 
+      }
+      else   System.out.println("doGet RESPoNSE VAR NULL: " + "originLocation"+"time"+"destLocation"+ "date");
+       
     }
 
     
